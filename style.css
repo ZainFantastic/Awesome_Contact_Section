@@ -16,6 +16,10 @@ body{
   height: 100vh;
 }
 
+h1 , h2 , p{
+  line-height: 1.5;
+  margin: 0;
+}
 a{
   text-decoration:none;
 }
@@ -27,14 +31,26 @@ a{
   justify-content: center;
 }
 
+/* small to big screen devices max width 992px */
+@media all and (max-width:992px){
+  .wrapper{
+    display:block;
+    overflow-x:hidden;
+  }
+}
+
+
+
 /* left-side */
 .left-side{
   position: relative;
   width:40%;
+  height:100%;
   background-color:var(--white);
   display:flex;
   justify-content: flex-end;
   align-items:center;
+  z-index: 0;
 }
 .left-side::before{
   content:'';
@@ -44,15 +60,20 @@ a{
   background-color: var(--secondary-color);
   position: absolute;
   top:2.5%;
-  left:25%;
+  left:10%;
 }
 
 .intro-block{
   position: relative;
   background-color: var(--main-color);
+  display:flex;
+  flex-flow:column;
+  justify-content: flex-start;
   padding:2rem;
-  width:65%;
+  width:80%;
   height:85%;
+  overflow:auto;
+  box-shadow: -10px 0px 25px rgba(0, 0, 0, 0.35);
 }
 .intro-block .intro-top-text{
   margin-bottom:5rem;
@@ -74,7 +95,7 @@ a{
 .intro-block .intro-top-text ul li a{
   display:block;
   padding:0.5rem 2rem 0.5rem 0.75rem;
-  margin-bottom:1rem ;
+  margin-bottom:0.5rem ;
   color:var(--white);
   font-weight:var(--ligit);
   text-transform:capitalize;
@@ -93,25 +114,263 @@ a{
   text-align:left;
 }
 .intro-block .bottom-text p span{
-  font-size:1.3rem;
+  font-size:1.2rem;
   font-weight:var(--bold);
 }
 .intro-block .bottom-text .hire-link{
   padding:0.25rem;
-  display:inline-block;
+  font-size:0.9rem;
+  display:block;
   color:var(--white);
   font-weight:var(--bold);
-}
-.intro-block .bottom-text .hire-link:hover span{
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(10px);
 }
 .intro-block .bottom-text .hire-link span{
   display: inline-block;
   visibility: hidden;
   opacity: 0;
   padding:0.25rem;
-  margin:0 0.15rem;
   transition:all 0.25s;
+}
+.intro-block .bottom-text .hire-link:hover span{
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+/* small to big screen devices max width 992px */
+@media all and (max-width:992px){
+  .left-side{
+    width:100%;
+    height:auto;
+    justify-content: center;
+  }
+  .left-side::before{
+    width:500px;
+    height: 500px;
+    top:25%;
+    left:50%;
+  }
+  .intro-block{
+    justify-content: flex-center;
+    align-items: center;
+    padding:2rem;
+    width:80%;
+    height:auto;
+    box-shadow: none;
+  }
+  .intro-block .intro-top-text{
+    margin-bottom:1rem;
+    display:flex;
+    flex-flow:column wrap;
+    align-items:center;
+  }
+  .intro-block .intro-top-text .icon{
+    text-align: center;
+    font-size:1.5rem;
+    padding:0rem;
+  }
+  .intro-block .intro-top-text ul{
+    flex-flow:column wrap;
+    align-items:center;
+  
+  }
+  .intro-block .intro-top-text ul li a{
+    font-size:1.25rem;
+    margin-bottom:1rem ;
+    padding:0.5rem 2rem;
+  }
+  
+  .intro-block .bottom-text p{
+    font-size:1.15rem;
+    text-align:center;
+  }
+  .intro-block .bottom-text p span{
+    font-size:1.65rem;
+  }
+  .intro-block .bottom-text .hire-link{
+    font-size:1.2rem;
+    text-align:center;
+  }
+}
+
+
+/* right side */
+.right-side{
+  width:auto;
+  height:100%;
+  background-color:var(--main-color);
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+ .right-side .contact-block{
+  width:80%;
+  height:85%;
+  padding:2rem;  
+  background:var(--white) url(assists/undraw_coming_home_52ir.svg) no-repeat scroll right bottom;
+  background-size: 25%;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-start;
+  overflow:auto;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.right-side .contact-block .contact-top-text{
+  width:100%;
+  margin-bottom:3rem;
+}
+.right-side .contact-block .contact-top-text h1{
+  font-weight:var(--reg);
+  margin-bottom:0.5rem;
+}
+.right-side .contact-block .contact-top-text h2{
+  font-weight:var(--light);
+  color:var(--dark-gray);
+  font-size:1.3rem;
+}
+
+.right-side .contact-block form ,
+.right-side .contact-block .location{
+  width:45%;
+}
+.right-side .contact-block form [type=text],
+.right-side .contact-block form [type=email],
+.right-side .contact-block form textarea{
+  width:100%;
+  border:0;
+  outline:0;
+  font-family:var(--font);
+  border-bottom:1.5px solid var(--dark-gray); 
+  padding:1.5rem;
+  resize: none;
+}
+.right-side .contact-block form [type=text]:focus,
+.right-side .contact-block form [type=email]:focus,
+.right-side .contact-block form textarea:focus{
+  border-color:var(--black);
+}
+.right-side .contact-block form [type=text]:invalid:not(:placeholder-shown),
+.right-side .contact-block form [type=email]:invalid:not(:placeholder-shown),
+.right-side .contact-block form textarea:invalid:not(:placeholder-shown){
+  border-color:red;
+}
+.right-side .contact-block form [type=text]:valid:not(:placeholder-shown),
+.right-side .contact-block form [type=email]:valid:not(:placeholder-shown),
+.right-side .contact-block form textarea:valid:not(:placeholder-shown){
+  border-color:green;
+}
+
+.right-side .contact-block form button{
+  color:var(--main-color);
+  font-weight:var(--bold);
+  font-size:1rem;
+  margin-top:1rem;
+  padding:0.5rem;
+  background-color:transparent;
+  border:none;
+  border-radius:1rem;
+  outline: 0;
+  cursor:pointer;
+  transition: all 0.25s ;
+}
+.right-side .contact-block form button:hover{
+  background-color:var(--main-color);
+  color:var(--white);
+}
+
+.right-side .contact-block .location h1{
+  font-size:1.5rem;
+  font-weight:var(--bold);
+}
+.right-side .contact-block .location p{
+  margin: 1.5rem 0;
+}
+.right-side .contact-block .location a{
+  display:block;
+  margin-bottom:1rem;
+  font-size:0.8rem;
+}
+.right-side .contact-block .location a span{
+  display: inline-block;
+  visibility: hidden;
+  opacity: 0;
+  padding:0.25rem;
+  transition:all 0.25s;
+}
+.right-side .contact-block .location a:hover span{
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+
+/* small to big screen devices max width 992px */
+@media all and (max-width:992px){
+
+    .right-side{
+    position:relative;
+    width:100%;
+    height:auto;
+    background-color: var(--white);
+    justify-content:center;
+    z-index: 0;
+  }
+    .right-side::before{
+    content:'';
+    width:500px;
+    height: 500px;
+    border-radius:50%;
+    background-color: var(--secondary-color);
+    position: absolute;
+    bottom:5%;
+    left:-50%;
+    z-index: -1;
+  }
+   .right-side .contact-block{
+    width:80%;
+    height:auto;
+    color:var(--white);
+    background:var(--main-color) url(assists/undraw_coming_home_52ir.svg) no-repeat scroll right bottom;
+    background-size: 50%;
+    flex-flow:column wrap;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:none;
+  }
+  
+  .right-side .contact-block .contact-top-text{
+    text-align:center;
+  }
+  .right-side .contact-block .contact-top-text h1{
+    font-size:2.5rem;
+  }
+  .right-side .contact-block form {
+    background-color:var(--white);
+    border-radius:1rem;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0, 0.6);
+  }
+  .right-side .contact-block form ,
+  .right-side .contact-block .location{
+    width:100%;
+  }
+
+  .right-side .contact-block form button{
+    color:var(--main-color);
+    font-weight:var(--bold);
+    width:100%;
+    margin-top:0;
+    padding:1rem;
+    border:none;
+    border-radius:0;
+  }
+  .right-side .contact-block .location{
+    margin: 3rem 0 ;
+  }
+  .right-side .contact-block .location a{
+    color:var(--white);
+  }
 }
